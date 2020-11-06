@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  RED.nodes.registerType("pb_split", {
+    category: "function",
+    color: "#bdad79",
+    defaults: {
+      name: {value: ""},
+      typedelay: {value: "num"},
+      typefirstTask: {value: "num"},
+      delay: { value: "" },
+      firstTask: { value: "" },
+      splitBy: {value: ""}
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "icon.png",
+    label: function () {
+      return this.name || "pb_split";
+    },
+    oneditprepare: function () {        
+      $("#node-input-delay").typedInput({default: this["typedelay"], types: ['msg', 'num']});
+      $("#node-input-firstTask").typedInput({default: this["typefirstTask"], types: ['msg', 'num']});
+    },
+    oneditsave: function () {          
+      this["typedelay"] = $("#node-input-delay").typedInput("type");
+      this["typefirstTask"] = $("#node-input-firstTask").typedInput("type");
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="pb_split">
+  <div class="form-row">
+    <label for="node-input-name" style="font-weight: 600;"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name" style="height: 30px;width: 55%;">
+  </div>
+  <div class="form-row">
+      <label for="node-input-delay"><i class="icon-tag"></i> Interval, ms</label>
+      <input type="text" id="node-input-delay" placeholder="1000">      
+  </div>
+  <div class="form-row">
+      <label for="node-input-firstTask"><i class="icon-tag"></i> First Task, ms</label>
+      <input type="text" id="node-input-firstTask" placeholder="0">      
+  </div>  
+  <p>Если в <code>msg.payload</code> строка, то разбить на массив по символу</p>
+  <div class="form-row">
+    <label for="node-input-splitBy"><i class="icon-tag"></i> Split using</label>
+    <input type="text" id="node-input-splitBy" placeholder="\n" value="">      
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="pb_split">
+  <p>Разбить <code>msg.payload</code> на отдельные таски</p>
+  <h3>Входящие параметры - для записи на витрины Node-Red</h3>
+  <ul>
+      <li><b>Name</b> - поле название узла - <em>не обязательное поле</em></li>
+      <li><b>Interval</b> - периодичность создания тасок в миллисекундах - <em>по умолчанию 1000мс (1 сек)</em></li>
+      <li><b>First Task</b> - задержка перед первой отправкой таски в миллисекундах - <em>по умолчанию 0мс</em></li>
+      <li><b>Split using</b> - символ, по которому разбить строку в <code>msg.payload</code> на массив. Используется, если в msg.payload строка - <em>по умолчанию \n</em></li>
+  </ul>
+</script>

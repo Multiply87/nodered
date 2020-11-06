@@ -1,0 +1,20 @@
+{
+  "name": "pb_split",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "pb_split.js",
+  "scripts": {
+    "test": "testnode"
+  },
+  "node-red" : {
+    "nodes": {
+        "pb_split": "pb_split.js"
+    }
+  },
+  "keywords": [
+    "split",
+    "pb"
+  ],
+  "author": "dn230587kav1",
+  "license": "PB"
+}
