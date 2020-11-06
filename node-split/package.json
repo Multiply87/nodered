@@ -1,0 +1,17 @@
+{
+  "name": "pb_split",
+  "version": "1.0.0",
+  "description": "Split node + delay",
+  "main": "pb_split.js",
+  "node-red" : {
+    "nodes": {
+        "pb_split": "pb_split.js"
+    }
+  },
+  "keywords": [
+    "split",
+    "pb"
+  ],
+  "author": "dn230587kav1",
+  "license": "PB"
+}
